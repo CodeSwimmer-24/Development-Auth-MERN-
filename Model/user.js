@@ -1,4 +1,4 @@
-const mongoose = require("mangoose");
+const mongoose = require("mongoose");
 
 const crypto = require("crypto");
 
@@ -11,11 +11,11 @@ const userSchema = new mongoose.Schema(
       require: true,
       max: 32,
     },
-    name: {
+    email: {
       type: String,
-      unique: true,
       trim: true,
-      require: true,
+      required: true,
+      unique: true,
       lowercase: true,
     },
     hashed_password: {
@@ -71,4 +71,4 @@ userSchema.methods = {
   },
 };
 
-module.exports = mongoose.module("User", userSchema);
+module.exports = mongoose.model("User", userSchema);
