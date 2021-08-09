@@ -127,7 +127,7 @@ exports.signin = (req, res) => {
     // authenticate user
     if (!user.authenticate(password)) {
       return res.status(400).json({
-        error: "Email and password donot match",
+        error: "Email and password do not match",
       });
     }
     // generaate the token and send to client
