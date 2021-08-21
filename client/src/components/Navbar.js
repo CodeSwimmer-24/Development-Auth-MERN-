@@ -10,10 +10,15 @@ function Navbar({children}) {
         </Link>
         </li>
         <li className="nav-item">
+        <Link to="/signin" className="text-light nav-link">
+          SignIn
+        </Link>
+        
+      </li>
+        <li className="nav-item">
         <Link to="/signUp" className="text-light nav-link">
           SignUp
         </Link>
-        
       </li>
     </ul>
   );

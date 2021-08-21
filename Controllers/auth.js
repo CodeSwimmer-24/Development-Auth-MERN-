@@ -63,7 +63,7 @@ exports.signup = (req, res) => {
       .send(emailData)
       .then((sent) => {
         return res.json({
-          message: `Email has been sent  to ${email}.Follow thw instruction to activate your account`,
+          message: 'Register Sucessfull',
         });
       })
       .catch((err) => {

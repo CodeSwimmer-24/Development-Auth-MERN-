@@ -5,15 +5,15 @@ import Navbar from '../components/Navbar';
 import {ToastContainer, toast} from "react-toastify";
 import 'react-toastify/dist/ReactToastify.min.css';
 
-function Signup() {
+function Signin() {
 
     const [values, setValues] = useState({
-        name:"",
+      
         email:'',
         password:'',
         buttonText:'Submit'
     });
-    const {name,email,password,buttonText} = values;
+    const {email,password,buttonText} = values;
    const handleChange = name => event => {
    console.log(event.target.value);
    setValues({...values,[name]:event.target.value})
@@ -24,27 +24,25 @@ function Signup() {
    setValues({...values,buttonText:'Submitting...'})
    axios({
        method:'POST',
-       url: `${process.env.REACT_APP_API}/signup`,
-       data:{name,email,password}
+       url: `${process.env.REACT_APP_API}/signin`,
+       data:{email,password}
    })
    .then(response => {
-       console.log('SIGNUP SUCESS',response)
-       setValues({...values,name: '',email:'',password:'',buttonText:'Submitted'})
-       toast.success('User signup sucessfully');
+       console.log('SIGNIN SUCESS',response);
+
+    //    save the response (user,token) localstorage/cookie
+       setValues({...values,email:'',password:'',buttonText:'Submitted'})
+       toast.success('User signin sucessfully');
    })
    .catch(error => {
-       console.log('SIGNUP ERROR',error.response.data)
+       console.log('SIGNIN ERROR',error.response.data)
        setValues({...values,buttonText:'Submit'})
        toast.error(error.response.data.error);
    })
    };
 
-    const signupForm = () => (
+    const signInForm = () => (
         <form>
-            <div className="form-group">
-                <label className="text-muted">Name</label>
-                <input onChange={handleChange('name')} values="name" type="text" className="form-control" />
-            </div>
             <div className="form-group">
                 <label className="text-muted">Email</label>
                 <input onChange={handleChange('email')} values="email" type="email" className="form-control" />
@@ -65,11 +63,11 @@ function Signup() {
         <Navbar>
             <div className="col-md-6 offset-md-3">
             <ToastContainer />
-        <h1>SignUp</h1>
-        {signupForm()}
+        <h1>SignIn</h1>
+        {signInForm()}
                 </div> 
         </Navbar>
     )
 }
 
-export default Signup
+export default Signin
